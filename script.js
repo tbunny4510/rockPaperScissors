@@ -23,32 +23,20 @@ let win = (playerSelection, computerSelection) =>
 let lose = (playerSelection, computerSelection) =>
     `You lose! ${computerSelection} beats ${playerSelection}`;
 
-let paper = (playerSelection, computerSelection) => {
-    if(computerSelection === "rock") {
-        return win(playerSelection, computerSelection);
-    } else if (computerSelection === "scissors") {
-        return lose(playerSelection, computerSelection);
-    }
-    return tie(playerSelection, computerSelection);
-}
+let paper = (playerSelection, computerSelection) => 
+    (computerSelection === "rock") ? win(playerSelection, computerSelection) :
+    (computerSelection === "scissors") ? lose(playerSelection, computerSelection):
+        tie(playerSelection, computerSelection);
 
-let rock = (playerSelection, computerSelection) => {
-    if(computerSelection === "scissors") {
-        return win(playerSelection, computerSelection);
-    } else if(computerSelection === "paper") {
-        return lose(playerSelection, computerSelection);
-    }
-    return tie(playerSelection, computerSelection);
-}
+let rock = (playerSelection, computerSelection) => 
+    (computerSelection === "scissors") ? win(playerSelection, computerSelection) :
+    (computerSelection === "paper") ? lose(playerSelection, computerSelection):
+        tie(playerSelection, computerSelection);
 
-let scissors = (playerSelection, computerSelection) => {
-    if(computerSelection === "paper") {
-        return win(playerSelection, computerSelection);
-    } else if(computerSelection === "rock") {
-        return lose(playerSelection, computerSelection);
-    }
-    return tie(playerSelection, computerSelection);
-}
+let scissors = (playerSelection, computerSelection) => 
+    (computerSelection === "paper") ? win(playerSelection, computerSelection) :
+    (computerSelection === "rock") ? lose(playerSelection, computerSelection) :
+        tie(playerSelection, computerSelection);
 
 let playRound = (playerSelection, computerSelection) =>
     (playerSelection === "rock") ? rock(playerSelection,computerSelection) :
@@ -60,7 +48,6 @@ function game() {
         let playerSelection = prompt("Rock, Paper, Scissors?");
         let computerSelection = getComputerChoice(randomizer());
         console.log(playRound(playerSelection.toLowerCase(), computerSelection));
-        console.log(score);
     }
 }
 
