@@ -14,28 +14,46 @@ function getComputerChoice(choice) {
     }
 }
 
-let score = 0;
+let tie = (playerSelection, computerSelection) =>
+    `It's a tie! ${playerSelection} and ${computerSelection} are the same!`;
 
-function playRound(playerSelection, computerSelection) {
-    if(playerSelection === "rock" && computerSelection === "scissors") {
-        score++;
-        return `You win! ${playerSelection} beats ${computerSelection}`;
-    } else if(playerSelection === "rock" && computerSelection === "paper") {
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
-    } else if(playerSelection === "paper" && computerSelection === "rock") {
-        return `You win! ${playerSelection} beats ${computerSelection}`;
-        score++;
-    } else if(playerSelection === "paper" && computerSelection === "scissors") {
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
-    } else if(playerSelection === "scissors" && computerSelection === "paper") {
-        return `You win! ${playerSelection} beats ${computerSelection}`;
-        score++;
-    } else if(playerSelection === 'scissors' && computerSelection === 'rock') {
-        return `You lose! ${computerSelection} beats ${playerSelection}`;
-    } else {
-        return `Tie! ${playerSelection} and ${computerSelection} are the same`;
+let win = (playerSelection, computerSelection) => 
+    `You win! ${playerSelection} beats ${computerSelection}`;
+
+let lose = (playerSelection, computerSelection) =>
+    `You lose! ${computerSelection} beats ${playerSelection}`;
+
+let paper = (playerSelection, computerSelection) => {
+    if(computerSelection === "rock") {
+        return win(playerSelection, computerSelection);
+    } else if (computerSelection === "scissors") {
+        return lose(playerSelection, computerSelection);
     }
+    return tie(playerSelection, computerSelection);
 }
+
+let rock = (playerSelection, computerSelection) => {
+    if(computerSelection === "scissors") {
+        return win(playerSelection, computerSelection);
+    } else if(computerSelection === "paper") {
+        return lose(playerSelection, computerSelection);
+    }
+    return tie(playerSelection, computerSelection);
+}
+
+let scissors = (playerSelection, computerSelection) => {
+    if(computerSelection === "paper") {
+        return win(playerSelection, computerSelection);
+    } else if(computerSelection === "rock") {
+        return lose(playerSelection, computerSelection);
+    }
+    return tie(playerSelection, computerSelection);
+}
+
+let playRound = (playerSelection, computerSelection) =>
+    (playerSelection === "rock") ? rock(playerSelection,computerSelection) :
+    (playerSelection === "paper") ? paper(playerSelection, computerSelection) :
+        scissors(playerSelection, computerSelection);
 
 function game() {
     for(let i = 0; i < 5; i++) {
